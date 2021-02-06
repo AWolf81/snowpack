@@ -1,7 +1,8 @@
 const fs = require('fs');
 
-module.exports = function plugin() {
+module.exports = function plugin(_, pluginOptions) {
   const NODE_ENV = process.env.NODE_ENV;
+  const env = pluginOptions && pluginOptions.env;
 
   // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
   const dotenvFiles = [
@@ -28,6 +29,10 @@ module.exports = function plugin() {
       );
     }
   });
+
+  if(env) {
+    Object.keys(env).forEach(envProp => process.env[`SNOWPACK_PUBLIC_${envProp}`] = env[envProp])
+  }
 
   return {
     name: '@snowpack/plugin-dotenv',

@@ -29,4 +29,6 @@ SNOWPACK_PUBLIC_ENABLE_FEATURE=true
 
 #### Plugin Options
 
-None
+| Name               | Type       | Description                                                                                                                                        |
+| :----------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `env`            | `object` | (optional) Anything passed will be avaliable in `SNOWPACK_PUBLIC_*` environment variable

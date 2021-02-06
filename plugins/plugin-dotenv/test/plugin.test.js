@@ -1,5 +1,6 @@
 const path = require('path');
 const execa = require('execa');
+const dotenvPlugin = require('../plugin')
 
 const execPluginFilePath = require.resolve('./execPlugin');
 const testWorkDirectory = path.join(__dirname, 'env');
@@ -25,3 +26,16 @@ describe('NODE_ENV=', () => {
     });
   });
 });
+
+describe('env option', () => {
+  const version = "1.2.3"
+
+  test('added to process.env', () => {
+    dotenvPlugin({}, {
+      env: {
+        version
+      }
+    })
+    expect(process.env.SNOWPACK_PUBLIC_version).toBe(version);
+  });
+})
